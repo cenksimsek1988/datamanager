@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="pages/templates/layout.xhtml">
+
+
+
+	<ui:define name="content">
+
+		<h:body>
+			<h:form id="worldBankIndicatorForm">
+				<p:growl id="msg" showDetail="true" escape="false" />
+				<div>
+					<div>
+						<h1>World Bank</h1>
+						<h1>Indicators</h1>
+					</div>
+					<h:panelGrid columns="1" cellpadding="5">
+						<p:progressBar widgetVar="pbAjax" ajax="true"
+							value="#{worldBankIndicatorBean.getISearcher().progress}"
+							labelTemplate="{value}%" styleClass="animated" global="false"
+							style="width:120px">
+							<p:ajax event="complete" update="indicatorDataTable" />
+						</p:progressBar>
+					</h:panelGrid>
+				</div>
+
+				<h3 style="margin-top: 0">Select Indicators to Sync</h3>
+
+				<p:dataTable id="indicatorDataTable" var="indicator"
+					value="#{worldBankIndicatorBean.getDtSearcher().source}"
+					widgetVar="cellIndicator" rows="10" paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15"
+					selection="#{worldBankIndicatorBean.getDtSearcher().selected}"
+					emptyMessage="No indicators found with given criteria"
+					filteredValue="#{worldBankIndicatorBean.getDtSearcher().filtered}"
+					rowKey="#{indicator.id}">
+					<f:facet name="header">
+           				All World Bank Indicators
+      		 		</f:facet>
+					<p:column selectionMode="multiple"
+						style="width:16px;text-align:center" />
+
+					<p:column style="width:15%" filterBy="#{indicator.name}"
+						filterMatchMode="contains">
+						<h:outputText value="#{indicator.name}" />
+					</p:column>
+
+					<p:column style="width:1%">
+						<p:separator
+							style="height: 120px;	background: #A8A8A8; border: none; width: 1px;
+				clear: none; margin: 0; box-shadow: none" />
+					</p:column>
+
+					<p:column style="width:75%" filterBy="#{indicator.description}"
+						filterMatchMode="contains">
+						<h:outputText value="#{indicator.description}" />
+					</p:column>
+
+					<p:column style="width:1%">
+						<p:separator
+							style="height: 120px;	background: #A8A8A8; border: none; width: 1px;
+				clear: none; margin: 0; box-shadow: none" />
+					</p:column>
+
+					<p:column style="width:8%">
+						<p:panelGrid columns="2" layout="grid">
+							<h:outputText value="#{indicator.frequencyId}" />
+							<h:outputText value="#{indicator.adjustmentId}" />
+						</p:panelGrid>
+						<h:outputText value="#{indicator.unit}" />
+					</p:column>
+
+				</p:dataTable>
+
+
+				<p:commandButton id="toGenerator" value="Next" ajax="true"
+					actionListener="#{worldBankIndicatorBean.refreshGeneratorList}"
+					action="world_bank_indicator_risk_factor_generator.xhtml?faces_redirect=true" />
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,56 @@
+name,id,agg_id,short,upper_limit,lower_limit
+Bankalar,8,7,Banka,NULL,NULL
+"Sukuk ",9,8,Sukuk,NULL,NULL
+"Diğer Yükümlülükler",10,9,Diğer,NULL,NULL
+Sermaye,11,10,Sermaye,NULL,NULL
+"Özel Cari Hesaplar",13,1,Vadesiz,NULL,NULL
+"Birikimli Katılım Hesapları",14,1,Birikimli,NULL,NULL
+"Katılım Hesapları",15,1,Katılım,NULL,NULL
+Wakala,16,1,Wakala,NULL,NULL
+"Kar Payı Dengeleme Rezervi",17,1,PER,NULL,NULL
+"Ödenmiş Sermaye",18,10,Ödenmiş,NULL,NULL
+"Karşılıklı Sermaye",19,10,Karşılıklı,NULL,NULL
+"Tier 1 Sukuk",20,10,"Tier 1",NULL,NULL
+"Kasa & TCMB",21,12,Kasa,NULL,NULL
+Bankalar,22,13,Banka,NULL,NULL
+"Bina ve Araçlar",23,11,"Bina & Araç",NULL,NULL
+"Diğer Varlıklar",24,11,Diğer,NULL,NULL
+İştirakler,25,11,İştirak,NULL,NULL
+Karşılıklılar,26,11,Karşılıklı,NULL,NULL
+Krediler,27,11,Kredi,NULL,NULL
+"Likit Varlıklarlar / Volatil Yükümlülükler",28,14,"A/L - Liq.",NULL,NULL
+"Nakit & Bankalar / Toplam Varlıklar",29,14,Cash,NULL,NULL
+"Bankalar / Toplam Varlıklar",30,14,From/A,NULL,NULL
+"(Banka Plasmanları - Banka Borçları) / Toplam Varlıklar",31,14,Interbank,NULL,NULL
+"Banka Plasmanları / Banka Borçları",32,14,From/To,NULL,NULL
+"Toplam Fix Getirili Varlıklar / Toplam Varlıklar",33,14,"A - Liq.",NULL,NULL
+"Toplam Fix Getirili Varlıklar / Banka Borçları",34,14,CA,NULL,NULL
+"Krediler / Katılım Hesapları",35,14,"Ad/D - Cus.",NULL,NULL
+"Bankalara Borçlar / Toplam Yükümlülükler",36,14,"FI L",NULL,NULL
+"Krediler / Kaynaklar",37,14,Ad/D,NULL,NULL
+"Banka Borçları / Özkaynaklar",38,14,To/SH,NULL,NULL
+"Standard Gap",147,2,Standard,NULL,NULL
+"Davranışsal Gap",148,2,Davranışsal,NULL,NULL
+"Net Profit Income",149,NULL,NPI,NULL,NULL
+"Economic Value of Equity",150,NULL,EVE,NULL,NULL
+"Funding Requirements",151,NULL,Requirements,NULL,NULL
+"Advance to Deposit",152,NULL,"Ad / D",NULL,NULL
+"Brenchmark Rate",200,NULL,Brenchmark,NULL,NULL
+"Other investments",205,9,"Other investments",NULL,NULL
+"Equity investments",206,9,"Equity investments",NULL,NULL
+"Fixed assets (net)",207,9,"Fixed assets (net)",NULL,NULL
+"Other assets",208,9,"Other assets",NULL,NULL
+"Current accounts",212,9,"Current accounts",NULL,NULL
+"Savings/STI accounts",213,9,"Savings/STI accounts",NULL,NULL
+"Investment acc - Time deposit [TD]",214,9,"Investment acc - Time deposit [TD]",NULL,NULL
+"Investment in Wakala deposits",215,9,"Investment in Wakala deposits",NULL,NULL
+"Profit Equalisation Reserve",216,9,"Profit Equalisation Reserve",NULL,NULL
+"Due to bank Vostro",218,9,"Due to bank Vostro",NULL,NULL
+"Due to bank - Time deposits",219,9,"Due to bank - Time deposits",NULL,NULL
+"Sukuk payable (adj)",220,9,"Sukuk payable (adj)",NULL,NULL
+"Sukuk payable (Fixed)",221,9,"Sukuk payable (Fixed)",NULL,NULL
+"Other liabilities",222,9,"Other liabilities",NULL,NULL
+"Total shareholders funds",226,9,"Total shareholders funds",NULL,NULL
+"Period Gap",230,9,"Period Gap",NULL,NULL
+"Cum. Gap",231,9,"Cum. Gap",NULL,NULL
+"Risk Sensitive Assets/Risk Sensitive Liab",232,9,"Risk Sensitive Assets/Risk Sensitive Liab",NULL,NULL

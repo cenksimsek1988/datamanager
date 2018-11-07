@@ -1,0 +1,20 @@
+name,id,short,main_id
+"Toplanan Fonlar",1,Fon,2
+Gaplar,2,Gap,10
+Bankalar,7,Banka,2
+Sukuk,8,Sukuk,2
+"Diğer Yükümlülükler",9,Diğer,2
+Sermaye,10,Sermaye,2
+"Net Krediler",11,Kredi,1
+"Kasa & TCMB",12,Kasa,1
+Bankalar,13,Banka,1
+"Oranlar - 1",14,Oran,8
+"Oranlar - 2",15,Oran,8
+"Net Profit Income ('000)",16,NPI,3
+"Change from
+ Base NPI ('000)",17,"Change from Base NPI",3
+"% Change from  Base NPI",18,"% Change from Base NPI",3
+"Economic Value of Equity ('000)",19,EVE,4
+"Change from  Base EVE ('000)",20,"Change from Base EVE",4
+"% Change from  Base EVE",21,"% Change from Base EVE",4
+"Katılımcı Mali Senaryoları",22,"Katılımcı Mali Senaryolar",9

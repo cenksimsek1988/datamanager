@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/security 
+			 					 http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		 						 http://www.springframework.org/schema/beans 
+		 						 http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<http auto-config="true" disable-url-rewriting="true"
+		use-expressions="true">
+
+		<intercept-url pattern="/resources/**"
+			access="permitAll" />
+		<intercept-url pattern="/javax.faces.resource/**"
+			access="permitAll" />
+		<intercept-url pattern="/pages/login.jsf*"
+			access="permitAll" />
+		<intercept-url pattern="/pages/home.*"
+			access="hasRole('ROLE_HOME')" />
+
+		<form-login login-page="/pages/login.jsf"
+			default-target-url="/pages/home.jsf" always-use-default-target="true"
+			authentication-failure-url="/pages/login.jsf?error=error.login.wrong" />
+		<logout logout-url="/logout"
+			logout-success-url="/pages/login.jsf" />
+		<session-management>
+			<concurrency-control max-sessions="1"
+				expired-url="/pages/login.jsf?error=error.login.max"
+				error-if-maximum-exceeded="false" />
+		</session-management>
+
+		<custom-filter ref="sessionManagementFilter"
+			before="SESSION_MANAGEMENT_FILTER" />
+	</http>
+
+	<user-service>
+		<user name="user" password="password" authorities="ROLE_HOME" />
+	</user-service>
+
+	<global-method-security
+		secured-annotations="enabled" jsr250-annotations="enabled"
+		pre-post-annotations="enabled">
+	</global-method-security>
+
+	<beans:bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<authentication-manager
+		alias="authenticationManager">
+		<authentication-provider
+			user-service-ref="myUds">
+			<password-encoder ref="passwordEncoder">
+				<salt-source user-property="username" />
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+	<beans:bean id="sessionManagementFilter"
+		class="org.springframework.security.web.session.SessionManagementFilter">
+		<beans:constructor-arg
+			name="securityContextRepository"
+			ref="httpSessionSecurityContextRepository" />
+	</beans:bean>
+
+	<beans:bean id="httpSessionSecurityContextRepository"
+		class="org.springframework.security.web.context.HttpSessionSecurityContextRepository" />
+</beans:beans>

@@ -1,0 +1,111 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="pages/templates/layout.xhtml">
+
+
+
+	<ui:define name="content">
+		<h:body>
+			<h:form id="regionForm">
+				<p:growl id="msg" showDetail="true" escape="false" />
+				<div>
+					<div>
+						<h1>Regions for All Database</h1>
+					</div>
+					<h:panelGrid columns="1" cellpadding="5">
+						<p:progressBar widgetVar="pbAjax" ajax="true"
+							value="#{regionBean.getRRequester().progress}"
+							labelTemplate="{value}%" styleClass="animated" global="false"
+							style="width:120px">
+							<p:ajax event="complete" update="regionDataTable" />
+						</p:progressBar>
+					</h:panelGrid>
+				</div>
+
+				<h3 style="margin-top: 0">All Regions from World Bank's own
+					Database</h3>
+				<p:dataTable id="regionDataTable" var="regionDataTable"
+					value="#{regionBean.dt.source}" widgetVar="cellIndicator" rows="10"
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" selection="#{regionBean.dt.selected}"
+					emptyMessage="No regions found with given criteria"
+					filteredValue="#{regionBean.dt.filtered}" editable="true"
+					editMode="cell" widgetVar="cellRegions">
+					<f:facet name="header">
+           				Edit Regions (Optional)
+       				</f:facet>
+					<p:ajax event="cellEdit"
+						listener="#{regionBean.editList.onCellEdit}"
+						update=":regionGenerateForm:msg" />
+					<p:column headerText="Name" filterBy="#{region.name}"
+						filterMatchMode="contains">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{region.name}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="modelInput" value="#{region.name}"
+									style="width:96%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Currency">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{region.currency}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{region.currency}" style="width:96%"
+									label="Currency" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Currency Code">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{region.currencyCode}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{region.currencyCode}" style="width:96%"
+									label="Currency Code" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Distance">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{region.distance}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{region.distance}" style="width:96%"
+									label="Distance to International Port" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Aggregate">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{region.aggregate}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu id="aggregate" label="#{region.aggregate}"
+									value="#{region.aggregate}">
+									<f:selectItem itemLabel="Select One"
+										itemValue="region.aggregate" />
+									<f:selectItem itemLabel="True" itemValue="true" />
+									<f:selectItem itemLabel="False" itemValue="false" />
+								</p:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+				</p:dataTable>
+				<p:commandButton id="save" value="Save" ajax="false"
+					actionListener="#{regionBean.save}"
+					action="home.xhtml?faces_redirect=true" />
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

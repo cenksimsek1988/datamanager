@@ -1,0 +1,17 @@
+id,name,coef
+1,"DN 200",NULL
+2,"DN 150",NULL
+3,"DN 100",NULL
+4,"DN 50",NULL
+5,Current,NULL
+6,"UP 50",NULL
+7,"UP 100",NULL
+8,"UP 150",NULL
+9,"UP 200",NULL
+20,-10%,0.9
+21,-5%,0.95
+22,Current,1
+23,+5%,1.05
+24,+10%,1.1
+25,+15%,1.15
+26,+20%,1.2

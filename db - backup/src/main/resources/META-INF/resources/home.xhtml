@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="templates/layout.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+			<h3>Welcome to DB project Wizard</h3>
+			<h2>Projects</h2>
+			<h:panelGrid columns="6">
+				<div>
+					<p:commandButton icon="ui-icon-plus"
+						action="new_project.xhtml?faces_redirect=true"
+						style="height:144px; width:144px; margin:36px" />
+				</div>
+				<div>
+					<p:commandButton value="GRWA"
+						action="project.xhtml?faces_redirect=true"
+						style="height:144px; width:144px; margin:36px" />
+				</div>
+			</h:panelGrid>
+			<h2>Database</h2>
+			<h:panelGrid columns="6">
+				<div>
+					<p:commandButton icon="ui-icon-plus"
+						action="political_risk_data.xhtml?faces_redirect=true"
+						style="height:144px; width:144px; margin:36px" />
+				</div>
+				<div>
+					<p:commandButton value="World Bank"
+						action="world_bank.xhtml?faces_redirect=true"
+						style="height:144px; width:144px; margin:36px" />
+				</div>
+				<div>
+					<p:commandButton value="FRED"
+						action="fred.xhtml?faces_redirect=true"
+						style="height:144px; width:144px; margin:36px" />
+				</div>
+				<div>
+					<p:commandButton value="Reuters"
+						action="reuters.xhtml?faces_redirect=true"
+						style="height:144px; width:144px; margin:36px" />
+				</div>
+				<div>
+					<p:commandButton value="Political Risk"
+						action="political_risk.xhtml?faces_redirect=true"
+						style="height:144px; width:144px; margin:36px" />
+				</div>
+				<div>
+					<p:commandButton value="Economic Freedom"
+						action="economic_freedom_data.xhtml?faces_redirect=true"
+						style="height:144px; width:144px; margin:36px" />
+				</div>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

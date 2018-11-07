@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html" locale="#{languageBean.localeCode}">
+	<h:head>
+		<h:outputStylesheet library="css" name="style.css" />
+		<h:outputStylesheet name="layout-dark-blue.css"
+			library="barcelona-layout/css" />
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<meta name="viewport"
+				content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+			<meta name="apple-mobile-web-app-capable" content="yes" />
+		</f:facet>
+
+		<h:outputScript name="js/nanoscroller.js" library="barcelona-layout" />
+		<h:outputScript name="js/layout.js" library="barcelona-layout" />
+		<h:outputScript name="js/ripple.js" library="barcelona-layout" />
+		<ui:insert name="head" />
+	</h:head>
+
+	<h:body styleClass="main-body">
+		<f:convertNumber local="#{languageBean.localeCode}" />
+		<div class="layout-wrapper">
+			<div id="header">
+				<ui:insert name="header">
+					<ui:include src="webapp/templates/header.xhtml" />
+				</ui:insert>
+			</div>
+
+			<div id="container">
+				<div id="menu">
+					<ui:insert name="menu">
+						<ui:include src="webapp/templates/menu.xhtml" />
+					</ui:insert>
+				</div>
+
+				<div id="mainContainer">
+					<div>
+						<ui:insert name="content" />
+					</div>
+				</div>
+			</div>
+
+			<div id="footer">
+				<ui:insert name="footer">
+					<ui:include src="webapp/templates/footer.xhtml" />
+				</ui:insert>
+			</div>
+		</div>
+
+		<h:outputStylesheet name="css/nanoscroller.css"
+			library="barcelona-layout" />
+		<h:outputStylesheet name="css/animate.css" library="barcelona-layout" />
+		<h:outputStylesheet name="css/ripple.css" library="barcelona-layout" />
+		<h:outputStylesheet name="layout-dark-blue.css"
+			library="barcelona-layout/css" />
+	</h:body>
+</f:view>
+</html>

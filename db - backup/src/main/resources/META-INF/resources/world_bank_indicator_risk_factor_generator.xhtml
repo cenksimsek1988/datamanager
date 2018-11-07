@@ -1,0 +1,101 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="pages/templates/layout.xhtml">
+
+
+
+	<ui:define name="content">
+
+		<h:body>
+			<h:form id="worldBankIndicatorGenerateForm">
+				<p:growl id="msg" showDetail="true" escape="false" />
+				<div>
+					<div>
+						<h1>World Bank</h1>
+					</div>
+					<p:panel id="basic"
+						header="Risk Factor Generator for Updated Indicators"
+						style="margin-bottom:20px">
+						<p:panelGrid columns="2" cellpadding="5">
+							<h:outputText value="Global Risk Factors: " />
+							<p:progressBar widgetVar="pbAjax" ajax="true"
+								value="#{worldBankIndicatorBean.getGGenerator().progress}"
+								labelTemplate="{value}%" styleClass="animated" global="false"
+								style="width:120px">
+								<p:ajax event="complete" update="msg" />
+							</p:progressBar>
+							<h:outputText value="Regional Risk Factors: " />
+							<p:progressBar widgetVar="pbAjax" ajax="true"
+								value="#{worldBankIndicatorBean.getRGenerator().progress}"
+								labelTemplate="{value}%" styleClass="animated" global="false"
+								style="width:120px">
+								<p:ajax event="complete" update="msg" />
+							</p:progressBar>
+						</p:panelGrid>
+					</p:panel>
+					<p:commandButton id="generate" value="Generate" icon="ui-icon-play"
+						ajax="true" var="genVar"
+						actionListener="#{worldBankIndicatorBean.generate}" />
+				</div>
+				<h3 style="margin-top: 0">Select Indicators to Sync</h3>
+				<p:dataTable id="indicator" var="indicator"
+					value="#{worldBankIndicatorBean.dtSearcher.source}" editable="true"
+					editMode="cell" widgetVar="cellCars">
+					<f:facet name="header">
+           				Edit Indicators (Optional)
+       				</f:facet>
+					<p:ajax event="cellEdit"
+						listener="#{worldBankIndicatorBean.getDtGenerator().onCellEdit}"
+						update=":worldBankIndicatorGenerateForm:msg" />
+					<p:column headerText="Name">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{indicator.name}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="modelInput" value="#{indicator.name}"
+									style="width:96%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Description">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{indicator.description}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{indicator.description}" style="width:96%"
+									label="Description" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column style="width:8%">
+						<p:panelGrid columns="2" layout="grid">
+							<h:outputText value="#{indicator.frequencyId}" />
+							<h:outputText value="#{indicator.adjustmentId}" />
+						</p:panelGrid>
+						<h:outputText value="#{indicator.unit}" />
+					</p:column>
+					<p:column headerText="Type">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{indicator.sourceCode}" />
+							</f:facet>
+							<f:facet name="input">
+								<h:selectOneMenu value="#{indicator.sourceCode}"
+									style="width:100%">
+									<f:selectItem itemLabel="Select One"
+										itemValue="indicator.sourceCode" />
+									<f:selectItem itemLabel="Global" itemValue="WG" />
+									<f:selectItem itemLabel="Regional" itemValue="WR" />
+								</h:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:rf="http://com.softactive.faces.util/functions"
+	xmlns:pa="http://primefaces.org/barcelona">
+
+	<h:form>
+		<p:menu toggleable="true">
+			<p:menuitem value="Ana Sayfa" action="home.xhtml?faces_redirect=true"
+				icon="ui-icon-home" />
+
+			<p:submenu label="World Bank">
+				<p:menuitem value="Regions"
+					action="world_bank_region.xhtml?faces_redirect=true"
+					icon="ui-icon-arrowrefresh-1-w" />
+				<p:menuitem value="Indicators"
+					action="world_bank_indicator.xhtml?faces_redirect=true"
+					icon="ui-icon-disk" />
+			</p:submenu>
+			<p:submenu label="FRED">
+				<p:menuitem value="Indicator"
+					action="fred_indicator.xhtml?faces_redirect=true" ajax="false"
+					icon="ui-icon-close" />
+				<p:menuitem value="Risk Factor"
+					action="fred_editor.xhtml?faces_redirect=true" ajax="false"
+					icon="ui-icon-close" />
+			</p:submenu>
+			<p:submenu label="Economic Freedom">
+				<p:menuitem value="Regions"
+					action="economic_freedom_editor.xhtml?faces_redirect=true"
+					icon="ui-icon-home" />
+				<p:menuitem value="Add Data"
+					action="economic_freedom_data.xhtml?faces_redirect=true"
+					icon="ui-icon-home" />
+			</p:submenu>
+			<p:submenu label="Political Risk">
+				<p:menuitem value="Regions"
+					action="political_risk_editor.xhtml?faces_redirect=true"
+					icon="ui-icon-home" />
+				<p:menuitem value="Add Data"
+					action="politicial_risk_data.xhtml?faces_redirect=true"
+					icon="ui-icon-home" />
+			</p:submenu>
+			<p:submenu label="Reuters">
+				<p:menuitem value="Regions" url="http://www.primefaces.org"
+					icon="ui-icon-home" />
+				<p:menuitem value="Tickers" url="http://www.primefaces.org"
+					icon="ui-icon-home" />
+			</p:submenu>
+		</p:menu>
+	</h:form>
+</ui:composition>

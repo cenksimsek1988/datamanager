@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="pages/templates/layout.xhtml">
+
+
+
+	<ui:define name="content">
+
+		<h:body>
+			<h:form id="worldBankRegionGenerateForm">
+				<p:growl id="msg" showDetail="true" escape="false" />
+				<div>
+					<div>
+						<h1>World Bank</h1>
+						<h1>Risk Factor Generator for Updated Regions</h1>
+					</div>
+					<div>
+						<p:commandButton id="generate" value="Generate"
+							icon="ui-icon-play" ajax="true" var="genVar"
+							actionListener="#{worldBankRegionBean.generate}" />
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputText value="Regional Risk Factors: " />
+							<p:progressBar widgetVar="pbAjax" ajax="true"
+								value="#{worldBankRegionBean.getRGenerator().progress}"
+								labelTemplate="{value}%" styleClass="animated" global="false"
+								style="width:120px">
+								<p:ajax event="complete" update="msg" />
+							</p:progressBar>
+						</h:panelGrid>
+					</div>
+				</div>
+				<h3 style="margin-top: 0">Select Regions to Sync</h3>
+				<p:dataTable id="region" var="region"
+					value="#{worldBankRegionBean.getDtGenerator().source}"
+					widgetVar="cellRegions">
+					<f:facet name="header">
+           				New Risk Factors will be generated for World Bank regional indicators and World Bank regions listed below
+       				</f:facet>
+					<p:column style="width:100%">
+						<h:outputText value="#{region.name}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

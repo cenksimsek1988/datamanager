@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: db-core
+Implementation-Version: 1.0.0
+Built-By: riskactive
+Implementation-Vendor-Id: com.softactive
+Build-Jdk: 1.8.0_181
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/db-core
+Created-By: Maven Integration for Eclipse
+

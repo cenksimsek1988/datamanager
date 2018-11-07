@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="pages/templates/layout.xhtml">
+	<ui:define name="content">
+		<h:body>
+			<h:form id="worldBankGetForm">
+				<div class="ui-g">
+					<p:growl id="msg" showDetail="true" escape="false" />
+					<div>
+						<h1>World Bank</h1>
+						<h1>Get All Indicators</h1>
+						<p:commandButton id="get" value="Get Indicators"
+							icon="ui-icon-arrowthickstop-1-s" ajax="true" var="searchVar"
+							actionListener="#{worldBankGetIndicatorBean.requestIndicators}" />
+					</div>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel for="iSearcher" value="Region:" />
+						<p:progressBar widgetVar="pbAjax" ajax="true"
+							value="#{worldBankGetIndicatorBean.progress}"
+							labelTemplate="{value}%" styleClass="animated" global="false"
+							style="width:120px">
+							<p:ajax event="complete"
+								listener="#{worldBankGetIndicatorBean.getISearcher().onComplete}"
+								update="msg" />
+						</p:progressBar>
+						<h:outputLabel for="ihandler" value="Indicators:" />
+						<p:progressBar widgetVar="pbAjax" ajax="true"
+							value="#{worldBankGetIndicatorBean.getISearcher().getHandler().progress}"
+							labelTemplate="{value}%" styleClass="animated" global="false"
+							style="width:120px">
+							<p:ajax event="complete"
+								listener="#{worldBankGetIndicatorBean.getISearcher().getHandler().onComplete}"
+								update="msg" />
+						</p:progressBar>
+					</h:panelGrid>
+				</div>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

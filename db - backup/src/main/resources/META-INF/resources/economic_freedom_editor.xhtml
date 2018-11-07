@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
+	<h:outputScript name="js/ripple.js" library="barcelona-layout" />
+	<h:outputScript name="js/layout.js" library="barcelona-layout" />
+</h:head>
+
+<h:body styleClass="login-body">
+	<h:form>
+		<p:growl id="msg" showDetail="true" escape="false" />
+
+		<h3 style="margin-top: 0">Select Countries</h3>
+		<p:pickList id="regionPick" value="#{economicFreedomEditor.rp.list}"
+			var="region" itemLabel="#{region.name}" itemValue="#{region}"
+			effect="bounce" showSourceControls="true" showTargetControls="true"
+			showCheckbox="true" responsive="true" showSourceFilter="true"
+			showTargetFilter="true" filterMatchMode="contains"
+			converter="converter">
+
+			<f:facet name="sourceCaption">Available</f:facet>
+			<f:facet name="targetCaption">Selected</f:facet>
+
+			<p:ajax event="transfer"
+				listener="#{economicFreedomEditor.rp.onTransfer}" update="msg" />
+			<p:ajax event="select"
+				listener="#{economicFreedomEditor.rp.onSelect}" update="msg" />
+			<p:ajax event="unselect"
+				listener="#{economicFreedomEditor.rp.onUnselect}" update="msg" />
+			<p:ajax event="reorder"
+				listener="#{economicFreedomEditor.rp.onReorder}" update="msg" />
+		</p:pickList>
+
+		<h3 style="margin-top: 0">Select Indicators</h3>
+		<p:pickList id="indicatorPick"
+			value="#{economicFreedomEditor.ip.list}" var="indicator"
+			itemLabel="#{indicator.name}" itemValue="#{indicator}"
+			effect="bounce" showSourceControls="true" showTargetControls="true"
+			showCheckbox="true" responsive="true" showSourceFilter="true"
+			showTargetFilter="true" filterMatchMode="contains"
+			converter="converter">
+
+			<f:facet name="sourceCaption">Available</f:facet>
+			<f:facet name="targetCaption">Selected</f:facet>
+
+			<p:ajax event="transfer"
+				listener="#{economicFreedomEditor.ip.onTransfer}" update="msg" />
+			<p:ajax event="select"
+				listener="#{economicFreedomEditor.ip.onSelect}" update="msg" />
+			<p:ajax event="unselect"
+				listener="#{economicFreedomEditor.ip.onUnselect}" update="msg" />
+			<p:ajax event="reorder"
+				listener="#{economicFreedomEditor.ip.onReorder}" update="msg" />
+		</p:pickList>
+
+		<div class="login-panel ui-fluid">
+			<div class="ui-g">
+				<div class="ui-g-12 login-header">
+					<h1>EDIT DATABASE</h1>
+				</div>
+				<div class="ui-g-12 button-container">
+					<p:commandButton value="CREATE" icon="ui-icon-person"
+						action="#{economicFreedomEditor.generate}" ajax="false" />
+				</div>
+			</div>
+		</div>
+	</h:form>
+	<h:outputStylesheet name="layout-dark-blue.css"
+		library="barcelona-layout/css" />
+</h:body>
+</html>
